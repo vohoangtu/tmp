@@ -1,0 +1,7 @@
+127.0.0.1()--query--tables(delete from table_user_online where time < 1701570292) (09:34:52 03/12/2023)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1701570304) (09:35:04 03/12/2023)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1701570386) (09:36:26 03/12/2023)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1701570392) (09:36:32 03/12/2023)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1701570409) (09:36:49 03/12/2023)
+127.0.0.1()--update--news([["","id","=",23]]) (09:36:49 03/12/2023)
+127.0.0.1()--query--tables(delete from table_user_online where time < 1701570416) (09:36:56 03/12/2023)
