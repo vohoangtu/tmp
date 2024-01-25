@@ -28,11 +28,10 @@ $sliderQC = $cache->get("select name$lang, photo, link from #_photo where type =
 
 $khachhangNews = $cache->get("select name$lang, slugvi, slugen, desc$lang, date_created, id, photo from #_news where type = ? and find_in_set('noibat',status) and find_in_set('hienthi',status) order by numb,id desc", array('khach-hang'), 'result', 7200);
 
-$gallery = $cache->get("select * from #_product where type=? and find_in_set('hienthi',status) order by numb,id desc", array('thu-vien-anh'), 'result', 7200);
+$gallery = $cache->get("select * from #_product where type=? and find_in_set('hienthi',status) order by numb,id desc limit 8", array('thu-vien-anh'), 'result', 7200);
 $indexServices = $cache->get("select * from #_news where type = ? and find_in_set('noibat',status) and find_in_set('hienthi',status) order by numb,id desc", array('dich-vu'), 'result', 7200);
 
 $gioithieuIndex = $cache->get("SELECT * from table_static where type=? and find_in_set('hienthi',status) limit 0,1",array('gioi-thieu'),'fetch',7200);
-
 
 /* SEO */
 

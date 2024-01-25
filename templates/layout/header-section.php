@@ -1,29 +1,4 @@
 <div class="header">
-    <div class="header-top">
-        <div class="wrap-content d-flex align-items-start justify-content-between">
-            <div class="slogan-header"><marquee behavior="" direction=""><?=$slogan["name$lang"]?></marquee></div>
-            <div class="boxtopright-header d-flex justify-content-end align-items-center">
-                <div class="menu-header text-right">
-                    <div class="d-inline-block">
-                        <a class="d-inline-block text-decoration-none active" href="" title="Home">Home</a>
-                    </div>
-                    <div class="d-inline-block">
-                        <a class="d-inline-block text-decoration-none " href="gioi-thieu" title="Giới thiệu">Giới thiệu</a>
-                    </div>
-                    <div class="d-inline-block">
-                        <a class="d-inline-block text-decoration-none " href="tin-tuc" title="Tin tức & sự kiện">Tin tức & sự kiện</a>
-                    </div>
-                    <div class="d-inline-block">
-                        <a class="d-inline-block text-decoration-none " href="lien-he" title="Liên hệ">Liên hệ</a>
-                    </div>
-                    <div class="d-inline-block">
-                        <a class="d-inline-block text-decoration-none " href="bao-gia" title="Báo giá">Báo giá</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
     <div class="header-bottom">
         <div class="wrap-content d-flex align-items-center justify-content-between">
             <a class="logo-header" href="">
@@ -31,8 +6,8 @@
                 data-src='thumbs/130x110x2/storage/upload/photo/<?=$logo["photo"]?>' alt='<?=$setting["name$lang"]?>'/>
             </a>
             <a class="banner-header" href="">
-                <img class='lazy'  onerror="this.src='thumbs/930x140x2/assets/images/noimage.png';"
-                     data-src='thumbs/930x140x2/storage/upload/photo/<?=$banner["photo"]?>' alt='<?=$setting["name$lang"]?>'/>			</a>
+                <img class='lazy'  onerror="this.src='thumbs/650x70x2/assets/images/noimage.png';"
+                     data-src='storage/upload/photo/<?=$banner["photo"]?>' alt='<?=$setting["name$lang"]?>'/>			</a>
             <div class="thelastbox-header">
                 <div class="hotline-header">
                     <a class="d-block text-decoration-none"
@@ -44,80 +19,102 @@
         </div>
     </div>
 </div><div class="menu">
-    <div class="wrap-content">
+    <div class="container">
         <ul class="d-flex align-items-center justify-content-start">
-            <li><a class="active transition" href="" title="Trang chủ"><i class="fas fa-home icon-home-menu"></i></a></li>
-            <?php if (count($ttlist)) { ?>
-                    <?php foreach ($ttlist as $klist => $vlist) {
-                        $spcat = $d->rawQuery("select name$lang, slugvi, slugen, id from #_news_cat where id_list = ? and find_in_set('hienthi',status) order by numb,id desc", array($vlist['id'])); ?>
+            <li class="col-auto"><a class="active transition" href="" title="Trang chủ">Trang Chủ</a></li>
+            <li class="col-auto"><a class="active transition" href="gioi-thieu" title="Trang chủ">Giới Thiệu</a></li>
+            <li class="col-auto">
+                <a class="active transition" href="san-pham" title="Sản Phẩm">Sản Phẩm</a>
+                <?php if (count($splist)) { ?>
+                <ul>
+                <?php foreach ($splist as $klist => $vlist) {
+                $spcat = $d->rawQuery("select name$lang, slugvi, slugen, id from #_product_cat where id_list = ? and find_in_set('hienthi',status) order by numb,id desc", array($vlist['id'])); ?>
+            <li class="col-auto">
 
-                        <li>
+                <a class="has-child transition" title="<?= $vlist['name' . $lang] ?>" href="<?= $vlist[$sluglang] ?>"><?= $vlist['name' . $lang] ?></a>
 
-                            <a class="has-child transition" title="<?= $vlist['name' . $lang] ?>" href="<?= $vlist[$sluglang] ?>"><?= $vlist['name' . $lang] ?></a>
+                <?php if (!empty($spcat)) { ?>
 
-                            <?php if (!empty($spcat)) { ?>
+                    <ul>
 
-                                <ul>
+                        <?php foreach ($spcat as $kcat => $vcat) {
 
-                                    <?php foreach ($spcat as $kcat => $vcat) {
+                            $spitem = $d->rawQuery("select name$lang, slugvi, slugen, id from #_product_item where id_cat = ? and find_in_set('hienthi',status) order by numb,id desc", array($vcat['id'])); ?>
 
-                                        $spitem = $d->rawQuery("select name$lang, slugvi, slugen, id from #_news_item where id_cat = ? and find_in_set('hienthi',status) order by numb,id desc", array($vcat['id'])); ?>
+                            <li>
 
-                                        <li>
+                                <a class="has-child transition" title="<?= $vcat['name' . $lang] ?>" href="<?= $vcat[$sluglang] ?>"><?= $vcat['name' . $lang] ?></a>
 
-                                            <a class="has-child transition" title="<?= $vcat['name' . $lang] ?>" href="<?= $vcat[$sluglang] ?>"><?= $vcat['name' . $lang] ?></a>
+                                <?php if (!empty($spitem)) { ?>
 
-                                            <?php if (!empty($spitem)) { ?>
+                                    <ul>
 
-                                                <ul>
+                                        <?php foreach ($spitem as $kitem => $vitem) {
 
-                                                    <?php foreach ($spitem as $kitem => $vitem) {
+                                            $spsub = $d->rawQuery("select name$lang, slugvi, slugen, id from #_product_sub where id_item = ? and find_in_set('hienthi',status) order by numb,id desc", array($vitem['id'])); ?>
 
-                                                        $spsub = $d->rawQuery("select name$lang, slugvi, slugen, id from #_news_sub where id_item = ? and find_in_set('hienthi',status) order by numb,id desc", array($vitem['id'])); ?>
+                                            <li>
 
-                                                        <li>
+                                                <a class="has-child transition" title="<?= $vitem['name' . $lang] ?>" href="<?= $vitem[$sluglang] ?>"><?= $vitem['name' . $lang] ?></a>
 
-                                                            <a class="has-child transition" title="<?= $vitem['name' . $lang] ?>" href="<?= $vitem[$sluglang] ?>"><?= $vitem['name' . $lang] ?></a>
+                                                <?php if (!empty($spsub)) { ?>
 
-                                                            <?php if (!empty($spsub)) { ?>
+                                                    <ul>
 
-                                                                <ul>
+                                                        <?php foreach ($spsub as $ksub => $vsub) { ?>
 
-                                                                    <?php foreach ($spsub as $ksub => $vsub) { ?>
+                                                            <li>
 
-                                                                        <li>
+                                                                <a class="transition" title="<?= $vsub['name' . $lang] ?>" href="<?= $vsub[$sluglang] ?>"><?= $vsub['name' . $lang] ?></a>
 
-                                                                            <a class="transition" title="<?= $vsub['name' . $lang] ?>" href="<?= $vsub[$sluglang] ?>"><?= $vsub['name' . $lang] ?></a>
+                                                            </li>
 
-                                                                        </li>
+                                                        <?php } ?>
 
-                                                                    <?php } ?>
+                                                    </ul>
 
-                                                                </ul>
+                                                <?php } ?>
 
-                                                            <?php } ?>
+                                            </li>
 
-                                                        </li>
+                                        <?php } ?>
 
-                                                    <?php } ?>
+                                    </ul>
 
-                                                </ul>
+                                <?php } ?>
 
-                                            <?php } ?>
+                            </li>
 
-                                        </li>
+                        <?php } ?>
 
-                                    <?php } ?>
+                    </ul>
 
-                                </ul>
+                <?php } ?>
 
-                            <?php } ?>
-
-                        </li>
-
-                    <?php } ?>
+            </li>
 
             <?php } ?>
+        </ul>
+            <?php } ?>
+            </li>
+
+
+            <li class="col-auto">
+                <a class="has-child  transition" href="dich-vu" title="Dịch Vụ">Dịch Vụ</a>
+            </li>
+            <li class="col-auto">
+                <a class="has-child  transition" href="cong-trinh" title="Công Trình Dự Án">Công Trình Dự Án</a>
+            </li>
+            <li class="col-auto">
+                <a class="has-child  transition" href="tin-tuc" title="Tin tức">Tin tức</a>
+            </li>
+            <li class="col-auto"><a class=" transition" href="lien-he" title="Liên hệ">Liên hệ</a></li>
+            <li class="col-auto">
+                <div class="search w-clear">
+                    <input type="text" id="keyword" placeholder="Bạn cần tìm kiếm gì?" onkeypress="doEnter(event,'keyword');"/>
+                    <p onclick="onSearch('keyword');"></p>
+                </div>
+            </li>
         </ul>
     </div>
 </div><div class="menu-res">
@@ -133,17 +130,17 @@
     </div>
     <nav id="menu">
         <ul>
-            <li><a class="active transition" href="" title="Trang chủ">Trang chủ</a></li>
+            <li class="col-auto"><a class="transition" href="" title="Trang chủ">Trang chủ</a></li>
             <li><a class=" transition" href="gioi-thieu" title="Giới thiệu">Giới thiệu</a></li>
             <li>
                 <a class="has-child  transition" href="dich-vu" title="Dịch Vụ">Dịch Vụ</a>
-                <?php if (count($ttlist)) { ?>
+                <?php if (count($splist)) { ?>
 
                     <ul>
 
-                        <?php foreach ($ttlist as $klist => $vlist) {
+                        <?php foreach ($splist as $klist => $vlist) {
 
-                            $spcat = $d->rawQuery("select name$lang, slugvi, slugen, id from #_news_cat where id_list = ? and find_in_set('hienthi',status) order by numb,id desc", array($vlist['id'])); ?>
+                            $spcat = $d->rawQuery("select name$lang, slugvi, slugen, id from #_product_cat where id_list = ? and find_in_set('hienthi',status) order by numb,id desc", array($vlist['id'])); ?>
 
                             <li>
 
@@ -155,7 +152,7 @@
 
                                         <?php foreach ($spcat as $kcat => $vcat) {
 
-                                            $spitem = $d->rawQuery("select name$lang, slugvi, slugen, id from #_news_item where id_cat = ? and find_in_set('hienthi',status) order by numb,id desc", array($vcat['id'])); ?>
+                                            $spitem = $d->rawQuery("select name$lang, slugvi, slugen, id from #_product_item where id_cat = ? and find_in_set('hienthi',status) order by numb,id desc", array($vcat['id'])); ?>
 
                                             <li>
 
@@ -167,7 +164,7 @@
 
                                                         <?php foreach ($spitem as $kitem => $vitem) {
 
-                                                            $spsub = $d->rawQuery("select name$lang, slugvi, slugen, id from #_news_sub where id_item = ? and find_in_set('hienthi',status) order by numb,id desc", array($vitem['id'])); ?>
+                                                            $spsub = $d->rawQuery("select name$lang, slugvi, slugen, id from #_product_sub where id_item = ? and find_in_set('hienthi',status) order by numb,id desc", array($vitem['id'])); ?>
 
                                                             <li>
 
@@ -216,9 +213,14 @@
                 <?php } ?>
             </li>
             <li>
-                <a class="has-child  transition" href="tin-tuc" title="Tin tức & sự kiện">Tin tức & sự kiện</a>
+                <a class="has-child  transition" href="dich-vu" title="Dịch Vụ">Dịch Vụ</a>
             </li>
-            <li><a class=" transition" href="bao-gia" title="Báo giá">Báo giá</a></li>
+            <li>
+                <a class="has-child  transition" href="cong-trinh" title="Công Trình Dự Án">Công Trình Dự Án</a>
+            </li>
+            <li>
+                <a class="has-child  transition" href="tin-tuc" title="Tin tức">Tin tức</a>
+            </li>
             <li><a class=" transition" href="lien-he" title="Liên hệ">Liên hệ</a></li>
         </ul>
     </nav>

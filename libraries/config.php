@@ -22,7 +22,7 @@ $config = array(
 
         'server-name' => $_SERVER["SERVER_NAME"],
 
-        'url' => '/amthanhminhluan/',
+        'url' => '/',
 
         'type' => 'mysql',
 
@@ -32,7 +32,7 @@ $config = array(
 
         'password' => '12345678@',
 
-        'dbname' => 'amthanhminhluan',
+        'dbname' => 'database',
 
         'port' => 3306,
 
