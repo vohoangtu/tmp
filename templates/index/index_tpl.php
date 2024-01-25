@@ -32,115 +32,64 @@
         </div>
     <?php } ?>
 <?php } ?>
-
-
-<div class="service-noibat">
+<section class="news-top">
     <div class="container">
-        <div class="block-title text-center">
-            <h3>
-                <span>DỊCH VỤ NỔI BẬT</span>
-            </h3>
-        </div>
-        <div class="owl-page owl-carousel owl-theme" data-items="screen:0|items:2|margin:15,
-        screen:725|items:3|margin:20,screen:975|items:4|margin:40" data-rewind="1"
-             data-autoplay="1" data-loop="0" data-lazyload="0" data-mousedrag="1" data-touchdrag="1" data-smartspeed="500" data-autoplayspeed="3500" data-dots="0" data-nav="1" data-navcontainer=".control-brand">
-            <?php foreach ($indexServices as $item) { ?>
-                <div>
-                    <div class="news-item service-item service-item-circle position-relative mb-4
-                    overflow-hidden">
-                        <a class="box-news text-decoration-none" href="<?= $item[$sluglang] ?>" title="<?= $item['name' . $lang] ?>">
-                            <p class="pic-news scale-img mb-0">
-                                <?= $func->getImage(['sizes' => '480x480x1', 'isWatermark' => true, 'prefix' => 'news', 'upload' =>
-                                    UPLOAD_NEWS_L, 'image' => $item['photo'], 'alt' => $item['name' . $lang]]) ?>
-                            </p>
-                            <div class="shadown"></div>
-                            <h3 class="name-news text-split"><?= $item['name' . $lang] ?></h3>
-                        </a>
+        <div class="row">
+            <div class="col-sm-12 col-sm-12 col-md-4">
+                <div class="title-news"><h2>Tin tức sự kiện</h2></div>
+                <div class="clearfix"></div>
+                <div class="content-news">
+                     <?php foreach($newsnb as $item){ ?>
+                    <div class="item-news">
+                        <div class="col-sm-4">
+                            <a
+                                    href="<?=$item["slugvi"]?>" title="<?=$item["namevi"]?>">
+                                <img class='lazy'  onerror="this
+                                                .src='thumbs/130x110x1/assets/images/noimage.png';"
+                                     data-src='thumbs/130x110x1/storage/upload/news/<?=$item["photo"]?>' alt='<?=$item["namevi"]?>'/>
+                            </a>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="ps-2">
+                                <div class="name-news" style="margin-top:0">
+                                    <a href="<?=$item["slugvi"]?>"
+                                       title="<?=$item["namevi"]?>"><?=$item["namevi"]?></a>
+                                </div>
+                                <div class="desc-news text-split"><?=$item["descvi"]?></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
-        </div>
 
-    </div>
-</div>
-<section id="about-index">
-    <div class="container">
-        <div class="about-box d-flex align-items-start justify-content-between flex-wrap">
-            <div class="about-left">
-                <div class="about-bg"></div>
-                <a href="gioi-thieu" title="<?=$gioithieuIndex["name$lang"]?>">
-                    <img class="img-block-auto" onerror="this.src='thumbs/558x335x1/assets/images/noimage.png';" src="thumbs/558x335x1/upload/news/<?=$gioithieuIndex["name$lang"]?>" alt="<?=$gioithieuIndex["name$lang"]?>"/>
-                </a>
+                    <?php } ?>
+                </div>
             </div>
-            <div class="about-right">
-               <?=html_entity_decode($gioithieuIndex["desc$lang"])?>
-                <p>
-                    <a href="gioi-thieu" class="readmore" title="Xem thêm">
-                        Xem thêm
-                    </a>
-                </p>
+            <div class="col-sm-12 col-sm-12 col-md-4">
+                <div class="title-news"><h2>Hỗ trợ trực tuyến</h2></div>
+                <div class="clearfix"></div>
+                <div class="content-support">
+                    <div class="hotline-support">
+                        0934 007 099 </br> 0932 160 899					</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-sm-12 col-md-4">
+                <div class="title-news"><h2>Fanpage facebook</h2></div>
+                <div class="clearfix"></div>
+                <div class="content-face">
+                    <div id="fb-root"></div>
+                    <script type="text/javascript">
+                        (function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+
+                    </script>
+                    <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-small-header="false" data-height="350" data-width="400" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
+                </div>
             </div>
         </div>
     </div>
+
 </section>
-<div class="block-main-services mb-5">
-    <div class="container">
-        <div class="block-title text-center">
-            <h3>
-                <span>HÌNH ẢNH THỰC TẾ</span>
-            </h3>
-        </div>
-        <div>
-            <div class="gallery-items row g-0">
-                <?php foreach($gallery as $item){ ?>
-                    <div class="col-md-3 col-6">
-                        <a class="thumb-pro-detail" data-zoom-id="Zoom-1" href="<?= UPLOAD_PRODUCT_L . $item['photo'] ?>">
-                            <?= $func->getImage(['sizes' => '480x480x1', 'isWatermark' => true, 'prefix' => 'product', 'upload' =>
-                                UPLOAD_PRODUCT_L, 'image' => $item['photo'], 'alt' => $item['name' . $lang]]) ?>
-                        </a>
-                    </div>
-                <?php } ?>
-            </a>
-        </div>
-    </div>
-</div>
-
-
-
-    <section id="video-fanpage-form-index">
-        <div class="container">
-            <div class="video-fanpage-form-box d-flex justify-content-between flex-wrap">
-                <div class="col-page">
-                    <h5>Fanpage</h5>
-                    <div class="col-desc">
-                        <?=$addons->set('video-fotorama', 'video-fotorama', 3); ?>
-                    </div>
-                </div>
-                <div class="col-page">
-                    <h5>Form liên hệ</h5>
-                    <div class="col-desc">
-                        <form class="validation-contact" novalidate method="post" action="lien-he" enctype="multipart/form-data">
-                            <div class="input-contact">
-                                <input type="text" class="form-control" id="ten" name="ten" placeholder="Họ tên" required />
-                                <div class="invalid-feedback">Vui lòng nhập họ và tên</div>
-                            </div>
-                            <div class="input-contact">
-                                <input type="number" class="form-control" id="dienthoai" name="dienthoai" placeholder="Số điện thoại" required />
-                                <div class="invalid-feedback">Vui lòng nhập số điện thoại</div>
-                            </div>
-                            <div class="input-contact">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required />
-                                <div class="invalid-feedback">Vui lòng nhập địa chỉ email</div>
-                            </div>
-                            <div class="input-contact">
-                                <textarea class="form-control" id="noidung" name="noidung" placeholder="Nội dung" required /></textarea>
-                                <div class="invalid-feedback">Vui lòng nhập nội dung</div>
-                            </div>
-                            <input type="submit" class="btn btn-primary" name="submit-contact" value="Đăng ký ngay" disabled />
-                            <input type="hidden" name="recaptcha_response_contact" id="recaptchaResponseContact">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
