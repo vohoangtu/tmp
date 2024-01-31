@@ -1,5 +1,0 @@
-125.235.232.219()--query--tables(delete from table_user_online where time < 1705282995) (08:53:15 15/01/2024)
-1.52.83.245()--query--tables(delete from table_user_online where time < 1705286130) (09:45:30 15/01/2024)
-27.70.241.58()--query--tables(delete from table_user_online where time < 1705287619) (10:10:19 15/01/2024)
-27.70.241.58()--query--tables(delete from table_user_online where time < 1705287929) (10:15:29 15/01/2024)
-125.235.232.219()--query--tables(delete from table_user_online where time < 1705308353) (15:55:53 15/01/2024)
