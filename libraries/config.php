@@ -54,7 +54,7 @@ $config = array(
 
     'website' => array(
 
-        'error-reporting' => false,
+        'error-reporting' => true,
         'secret' => '$nina@',
         'salt' => 'swKJjeS!t',
         'scss' => false,
@@ -207,67 +207,38 @@ if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] 
 /* Redirect http/https */
 
 if (!count($config['arrayDomainSSL']) && $http == 'https://') {
-
     $host = $_SERVER['HTTP_HOST'];
-
     $request_uri = $_SERVER['REQUEST_URI'];
-
     $good_url = "http://" . $host . $request_uri;
-
     header("HTTP/1.1 301 Moved Permanently");
-
     header("Location: $good_url");
-
     exit;
-
 }
-
-
 
 /* CheckSSL */
 
 if (count($config['arrayDomainSSL'])) {
-
     include LIBRARIES . "checkSSL.php";
-
 }
 
-
-
 /* Cấu hình base */
-
 $configUrl = $config['database']['server-name'] . $config['database']['url'];
-
 $configBase = $http . $configUrl;
-
-
 
 /* Token */
 
 define('TOKEN', md5(NN_CONTRACT . $config['database']['url']));
 
-
-
 /* Path */
-
 define('ROOT', str_replace(basename(__DIR__), '', __DIR__));
-
 define('ASSET', $http . $configUrl);
-
 define('ADMIN', 'admin');
 
-
-
 /* Cấu hình login */
-
 $loginAdmin = $config['login']['admin'];
-
 $loginMember = $config['login']['member'];
 
-
-
 /* Cấu hình upload */
-
 require_once LIBRARIES . "constant.php";
 
 
