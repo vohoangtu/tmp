@@ -25,12 +25,9 @@
                                    src='thumbs/100x100x1/upload/product/<?=$item["photo"]?>'
                                    alt='<?=$item["name$lang"]?>'/>
                         </div>
-
                     </div>
                     <h3 class="m-0 text-split"><?=$item["name$lang"]?></h3>
-
                 </a>
-
             </div>
             <?php } ?>
         </div>
@@ -288,4 +285,5 @@ $indexSPMoi = 0;
         </div>
     </div>
 </div>
+//http://thienphucbabycare.com/
 
