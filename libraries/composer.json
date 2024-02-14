@@ -5,7 +5,8 @@
         "illuminate/container": "*",
         "illuminate/support": "*",
         "illuminate/config": "*",
-        "illuminate/cache": "*"
+        "illuminate/cache": "*",
+        "illuminate/filesystem": "^10.44"
     },
     "autoload": {
         "psr-4": {

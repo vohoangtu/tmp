@@ -31,26 +31,29 @@
         <ul class="menu d-flex align-items-center justify-content-start">
             <li class="col-auto"><a class="active transition" href="" title="Trang chủ">Trang Chủ</a></li>
             <li class="col-auto"><a class="transition" href="gioi-thieu" title="Trang chủ">Giới Thiệu</a></li>
-
             <li class="col-auto">
                 <a class="has-child  transition" href="san-pham" title="Tin tức">Sản Phẩm</a>
-                <?php if (count($splist)) { ?>
+                <?php if (count($indexMenu)) { ?>
                     <ul>
-                        <?php foreach ($splist as $klist => $vlist) {
-
-                            $spcat = $d->rawQuery("select name$lang, slugvi, slugen, id from #_product_cat where id_list = ? and find_in_set('hienthi',status) order by numb,id desc", array($vlist['id']));
+                        <?php foreach ($indexMenu as $klist => $vlist) {
+                            $spcat = $vlist['cat'];
                             ?>
                             <li>
 
-                                <a class="has-child transition" title="<?= $vlist['name' . $lang] ?>" href="<?= $vlist[$sluglang] ?>"><?= $vlist['name' . $lang] ?></a>
+                                <a class="has-child transition" title="<?= $vlist['key']['name'] ?>" href="<?=
+                                $vlist['key']['slug']
+                                ?>"><?= $vlist['key']['name'] ?></a>
 
                                 <?php if (!empty($spcat)) { ?>
                                     <ul>
                                         <?php foreach ($spcat as $kcat => $vcat) {
-                                            $spitem = $d->rawQuery("select name$lang, slugvi, slugen, id from #_product_item where id_cat = ? and find_in_set('hienthi',status) order by numb,id desc", array($vcat['id'])); ?>
+                                            $spitem = $vcat['items'] ?>
                                             <li>
 
-                                                <a class="has-child transition" title="<?= $vcat['name' . $lang] ?>" href="<?= $vcat[$sluglang] ?>"><?= $vcat['name' . $lang] ?></a>
+                                                <a class="has-child transition" title="<?= $vcat['key']['name']
+                                                ?>"
+                                                   href="<?= $vcat['key']['slug'] ?>"><?= $vcat['key']['name']
+                                                    ?></a>
 
                                                 <?php if (!empty($spitem)) { ?>
 

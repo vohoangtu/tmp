@@ -18,5 +18,12 @@ yarn-error.log
 /.idea
 /.vscode
 /upload
+/storage/caches/*
+/storage/icache/*
+/storage/logs/*
+/storage/upload/product/*
+/storage/upload/news/*
+/storage/upload/photo/*
+/storage/upload/video/*
 /thumbs
 /watermark

@@ -5,19 +5,36 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 define('NN_CONTRACT', '');
 define('NN_AUTHOR', '');
 
+define('ROOT', str_replace(basename(__DIR__), '', __DIR__));
+
 $config = array(
     'author' => array(
-
         'name' => 'Diệp Phúc Tài',
-
         'email' => 'phuctai.nina@gmail.com',
-
         'timefinish' => '01/01/2022'
-
     ),
 
     'arrayDomainSSL' => array(),
-
+    'cache' => [
+        'default' => 'file',
+        'stores' => [
+            'array' => [
+                'driver' => 'array',
+                'serialize' => false,
+            ],
+            'file' => [
+                'driver' => 'file',
+                'path' => ROOT . "/storage/icache",
+                'lock_path' => ROOT . "/storage/icache",
+            ],
+            'redis' => [
+                'driver' => 'redis',
+                'connection' => 'cache',
+                'lock_connection' => 'default',
+            ],
+        ],
+        'prefix' => '_cache_',
+    ],
     'database' => array(
 
         'server-name' => $_SERVER["SERVER_NAME"],
@@ -230,7 +247,7 @@ $configBase = $http . $configUrl;
 define('TOKEN', md5(NN_CONTRACT . $config['database']['url']));
 
 /* Path */
-define('ROOT', str_replace(basename(__DIR__), '', __DIR__));
+
 define('ASSET', $http . $configUrl);
 define('ADMIN', 'admin');
 

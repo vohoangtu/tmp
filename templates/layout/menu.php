@@ -21,11 +21,8 @@
                    title="XÂY DỰNG">SẢN PHẨM</a>
 
                 <?php if (count($splist)) { ?>
-
                     <ul>
-
                         <?php foreach ($splist as $klist => $vlist) {
-
                             $spcat = $d->rawQuery("select name$lang, slugvi, slugen, id from #_product_cat where id_list = ? and find_in_set('hienthi',status) order by numb,id desc", array($vlist['id'])); ?>
 
                             <li>

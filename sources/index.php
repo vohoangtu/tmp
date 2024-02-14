@@ -2,8 +2,6 @@
 
 if (!defined('SOURCES')) die("Error");
 
-
-
 $popup = $cache->get("select name$lang, photo, link from #_photo where type = ? and act = ? and find_in_set('hienthi',status) limit 0,1", array('popup', 'photo_static'), 'fetch', 7200);
 
 $slider = $cache->get("select name$lang, photo, link from #_photo where type = ? and find_in_set('hienthi',status) order by numb desc", array('slide'), 'result', 7200);
