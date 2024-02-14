@@ -87,19 +87,14 @@ try {
         $app['locale'] = $_SESSION['lang'];
         $lang = $app['locale'];
     }
+
     $sluglang = 'slug'.$lang;
     $nameLang = 'name'.$lang;
     $contentLang = 'content'.$lang;
     $descLang = 'desc'.$lang;
     $seolang = "vi";
+
     require_once LIBRARIES . "lang/$lang.php";
-
-
-
-
-
-
-
 
     /* Find data */
     if (!empty($com) && !in_array($com, ['index','','tim-kiem', 'account', 'sitemap'])) {
@@ -176,11 +171,6 @@ try {
             }
         }
         $collect = new \Illuminate\Support\Collection($requick);
-
-        $allComs = $collect->map(function ($key){
-            return $key['com'];
-        })->unique();
-
 
         $object = $collect->filter(function ($value) use ($com){
             return $value['com'] == $com && $value['field'] == 'id';

@@ -1,19 +1,13 @@
 <?php
 
 if (!defined('LIBRARIES')) die("Error");
+
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-define('NN_CONTRACT', '');
-define('NN_AUTHOR', '');
+const NN_CONTRACT = '';
 
 define('ROOT', str_replace(basename(__DIR__), '', __DIR__));
 
 $config = array(
-    'author' => array(
-        'name' => 'Diệp Phúc Tài',
-        'email' => 'phuctai.nina@gmail.com',
-        'timefinish' => '01/01/2022'
-    ),
-
     'arrayDomainSSL' => array(),
     'cache' => [
         'default' => 'file',
@@ -36,27 +30,16 @@ $config = array(
         'prefix' => '_cache_',
     ],
     'database' => array(
-
         'server-name' => $_SERVER["SERVER_NAME"],
-
         'url' => '/',
-
         'type' => 'mysql',
-
         'host' => 'localhost',
-
         'username' => 'root',
-
         'password' => '12345678@',
-
         'dbname' => 'database',
-
         'port' => 3306,
-
         'prefix' => 'table_',
-
         'charset' => 'utf8mb4'
-
     ),
 
     'menu' => [
@@ -70,7 +53,6 @@ $config = array(
     ],
 
     'website' => array(
-
         'error-reporting' => true,
         'secret' => '$nina@',
         'salt' => 'swKJjeS!t',
@@ -83,31 +65,19 @@ $config = array(
             'hasWebp' => false,
         ),
         'video' => array(
-
             'extension' => array('mp4', 'mkv'),
-
             'poster' => array(
-
                 'width' => 700,
-
                 'height' => 610,
-
                 'extension' => '.jpg|.png|.jpeg'
-
             ),
-
             'allow-size' => '100Mb',
-
             'max-size' => 100 * 1024 * 1024
-
         ),
 
         'upload' => array(
-
             'max-width' => 1600,
-
             'max-height' => 1600
-
         ),
 
         'lang' => array(
@@ -119,16 +89,12 @@ $config = array(
         ),
 
         'lang-doc' => 'vi|en',
-
         'slug' => array(
             'vi' => 'Tiếng Việt',
 //            'en' => 'Tiếng Anh'
         ),
-
         'seo' => array(
-
             'vi' => 'Tiếng Việt',
-
 //            'en' => 'Tiếng Anh'
 
         ),
@@ -210,13 +176,9 @@ error_reporting(($config['website']['error-reporting']) ? E_ALL : 0);
 /* Cấu hình http */
 
 if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
-
     $http = 'https://';
-
 } else {
-
     $http = 'http://';
-
 }
 
 
@@ -249,7 +211,7 @@ define('TOKEN', md5(NN_CONTRACT . $config['database']['url']));
 /* Path */
 
 define('ASSET', $http . $configUrl);
-define('ADMIN', 'admin');
+const ADMIN = 'admin';
 
 /* Cấu hình login */
 $loginAdmin = $config['login']['admin'];

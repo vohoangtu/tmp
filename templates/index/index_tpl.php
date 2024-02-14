@@ -1,200 +1,291 @@
-<div class="wrap-about content">
-    <div class="wrap-content d-flex align-items-start justify-content-between">
-        <div class="item-about text-center">
-            <label>Đôi nét về</label>
-            <h3>CÔNG TY HẢO TIẾN PHÁT</h3>
-            <p class="text-split"><?=$gioithieuIndex["desc$lang"]?></p>
-            <a class="more-about" href="gioi-thieu">Xem tất cả</a>
-        </div>
-        <div class="item-about">
-            <?php foreach ($sliderGioithieu as $item){ ?>
-            <div class="about">
-                <a class="box-about text-decoration-none" href="gioi-thieu" title="1">
-                    <img onerror="this.src='thumbs/230x230x2/assets/images/noimage.png';" src="thumbs/230x230x1/storage/upload/photo/<?=$item["photo"]?>" alt="1">
-                </a>
-            </div>
-           <?php } ?>
-        </div>
-    </div>
-</div>
-
-<div class="wrap-product wrap-content content">
-<?php foreach ($splistnb as $klist => $vlist) {
-    $indexProducts = $cache->get("select * from #_product where type = ? and find_in_set('noibat',status) and find_in_set('hienthi',status) and id_list=? limit 6", array('san-pham', $vlist['id']), 'result', 7200);
-    $indexCats= $cache->get("select * from #_product_cat where type = ? and find_in_set('noibat',status) and find_in_set('hienthi',status) and id_list=? limit 4", array('san-pham', $vlist['id']), 'result', 7200);
-    if(count($indexProducts) > 0){
-        ?>
-
-
-    <div class="model-product">
-        <div class="title-list d-flex align-items-center justify-content-start">
-            <span><?=$vlist["namevi"]?></span>
-            <div class="title-cat">
-                <?php foreach($indexCats as $cat){ ?>
-                    <label data-idl="<?=$vlist["id"]?>" data-idc="<?=$cat["id"]?>"><?=$cat["namevi"]?></label>
-                <?php } ?>
-            </div>
-        </div>
-        <div class="group-product d-flex align-items-start justify-content-between">
-            <div class="avatar-list">
-                <a class="text-decoration-none" href="<?=$vlist["slugvi"]?>" title="<?=$vlist["namevi"]?>">
-                    <img onerror="this.src='thumbs/300x600x2/assets/images/noimage.png';" src="thumbs/300x600x1/storage/upload/product/<?=$vlist["photo"]?>" alt="<?=$vlist["namevi"]?>">
-                </a>
-            </div>
-            <div class="col-pro">
-                <div class="row">
-                    <?php
-                    foreach ($indexProducts as $k => $item) { ?>
-                        <div class="col-lg-4 col-6">
-                            <div class="product">
-                                <a class="box-product text-decoration-none" href="<?=$item["slug$lang"]?>" title="<?=$item["name$lang"]?>">
-                                    <p class="pic-product scale-img"><img onerror="this.src='thumbs/260x230x2/assets/images/noimage.png';" src="thumbs/260x230x1/storage/upload/product/<?=$item["photo"]?>" alt="<?=$item["name$lang"]?>"></p>
-                                    <h3 class="name-product text-split"><?=$item["name$lang"]?></h3>
-                                </a>
-                            </div>
-                        </div>
-                    <?php } ?>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <?php } ?>
-<?php } ?>
-</div>
-
-
-
-<div class="wrap-step content">
-    <div class="wrap-content">
-        <div class="title-main">
-            <span>Quy trình sản xuất</span>
-            <p>Luôn đem đến những sản phẩm chất lượng đến tay người dùng</p>
-        </div>
-        <div class="square-step d-flex align-items-start justify-content-between">
-            <div class="box-step d-flex align-items-center justify-content-start">
-                <a class="item-square d-flex align-items-center justify-content-between text-decoration-none" href="tay-rua-khuon">
-                    <div class="info-step">
-                        <h3 class="name-step text-split">1. TẨY RỬA KHUÔN</h3>
-                        <p class="desc-step text-split">Tẩy rửa dầu mỡ trên mặt khuôn</p>
-                    </div>
-                    <div class="line-step">
-                        <p class="pic-step scale-img"><img onerror="this.src='thumbs/60x60x2/assets/images/noimage.png';" src="upload/news/i1-8330.png" alt="TẨY RỬA KHUÔN">
-                        </p>
-                    </div>
-                </a>
-                <a class="item-square d-flex align-items-center justify-content-between text-decoration-none" href="say-kho-lam-sach-be-mat">
-                    <div class="info-step">
-                        <h3 class="name-step text-split">2. SẤY KHÔ, LÀM SẠCH BỀ MẶT</h3>
-                        <p class="desc-step text-split">Cho vào lò sấy khô ở nhiệt độ 300 độ C và phun cát làm sạch bề mặt khuôn</p>
-                    </div>
-                    <div class="line-step">
-                        <p class="pic-step scale-img"><img onerror="this.src='thumbs/60x60x2/assets/images/noimage.png';" src="upload/news/i1-5468.png" alt="SẤY KHÔ, LÀM SẠCH BỀ MẶT">
-                        </p>
-                    </div>
-                </a>
-                <a class="item-square d-flex align-items-center justify-content-between text-decoration-none" href="phun-phu-son-lot">
-                    <div class="info-step">
-                        <h3 class="name-step text-split">3. PHUN PHỦ SƠN LÓT</h3>
-                        <p class="desc-step text-split">Phun phủ lớp sơn lót thật đều trên bề mặt </p>
-                    </div>
-                    <div class="line-step">
-                        <p class="pic-step scale-img"><img onerror="this.src='thumbs/60x60x2/assets/images/noimage.png';" src="upload/news/i3-4244.png" alt="PHUN PHỦ SƠN LÓT">
-                        </p>
-                    </div>
-                </a>
-            </div><div class="box-step d-flex align-items-center justify-content-end">											<a class="item-square d-flex align-items-center justify-content-between text-decoration-none" href="buoc-2">
-                    <div class="info-step">
-                        <h3 class="name-step text-split">4. PHUN PHỦ LỚP SƠN CHỐNG DÍNH</h3>
-                        <p class="desc-step text-split">Phun phủ lớp sơn chống dính thứ hai và cho vào lò sấy</p>
-                    </div>
-                    <div class="line-step">
-                        <p class="pic-step scale-img"><img onerror="this.src='thumbs/60x60x2/assets/images/noimage.png';" src="upload/news/i2-6773.png" alt="PHUN PHỦ LỚP SƠN CHỐNG DÍNH">
-                        </p>
-                    </div>
-                </a>
-                <a class="item-square d-flex align-items-center justify-content-between text-decoration-none" href="kiem-tra-khuon">
-                    <div class="info-step">
-                        <h3 class="name-step text-split">5. KIỂM TRA KHUÔN</h3>
-                        <p class="desc-step text-split">Kiểm tra khuôn trước khi đóng gói </p>
-                    </div>
-                    <div class="line-step">
-                        <p class="pic-step scale-img"><img onerror="this.src='thumbs/60x60x2/assets/images/noimage.png';" src="upload/news/i2-7883.png" alt="KIỂM TRA KHUÔN">
-                        </p>
-                    </div>
-                </a>
-                <a class="item-square d-flex align-items-center justify-content-between text-decoration-none" href="giao-hang">
-                    <div class="info-step">
-                        <h3 class="name-step text-split">6. GIAO HÀNG</h3>
-                        <p class="desc-step text-split">Giao hàng đến tay Quý khách hàng</p>
-                    </div>
-                    <div class="line-step">
-                        <p class="pic-step scale-img"><img onerror="this.src='thumbs/60x60x2/assets/images/noimage.png';" src="upload/news/i3-2967.png" alt="GIAO HÀNG">
-                        </p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="wrap-newsnb py-5">
+<div class="index-product-noibat">
     <div class="container">
-        <div class="title-main">
-            <span>Tin tức thị trường</span>
-            <p>Luôn đem đến những sản phẩm chất lượng đến tay người dùng</p>
+        <div class="title-pro">
+            <span>Sale off</span>
         </div>
-        <div class="owl-page owl-carousel owl-theme" data-xsm-items="1:10" data-sm-items="2:10" data-md-items="2:10"
-             data-lg-items="3:10" data-xlg-items="3:10" data-rewind="1" data-autoplay="1" data-loop="0" data-lazyload="0"
-             data-mousedrag="1" data-touchdrag="1" data-smartspeed="500" data-autoplayspeed="3500" data-dots="0"
-             data-nav="0" data-navtext="" data-navcontainer="">
-            <?php foreach($newsnb as $item){ ?>
-             <div class="item-newsnb">
-                <p class="pic-newsnb">
-                    <a class="scale-img" href="<?=$item["slugvi"]?>" title="<?=$item["namevi"]?>">
-                        <img class="lazy w-100" onerror="this.src='thumbs/576x432x1/assets/images/noimage.png';"
-                             data-src="thumbs/576x432x1/storage/upload/news/<?=$item["photo"]?>"
-                             alt="<?=$item["namevi"]?>" title="<?=$item["namevi"]?>" />
-                    </a>
-                </p>
-                <div class="info-newsnb">
-                    <div class="time-newshome"><div><span>23</span><span>11/2023</span></div></div>
-                    <div>
-                        <h3 class="mb-0">
-                            <a class="name-newsnb text-split text-decoration-none" href="<?=$item["slugvi"]?>"
-                               title="<?=$item["namevi"]?>"><?=$item["namevi"]?></a>
-                        </h3>
-                        <p class="desc-newsnb text-split"><?=$item["descvi"]?></p>
-                    </div>
-                </div>
-            </div>
+        <div class="owl-page owl-carousel owl-theme" data-items="screen:0|items:2|margin:10,screen:425|items:2|margin:10,screen:575|items:3|margin:10,screen:767|items:3|margin:10,screen:991|items:4|margin:40,screen:1199|items:5|margin:40" data-rewind="1" data-autoplay="1" data-loop="1" data-lazyload="0" data-mousedrag="1" data-touchdrag="1" data-smartspeed="800" data-autoplayspeed="800" data-autoplaytimeout="5000" data-dots="0" data-animations="animate__fadeInDown, animate__backInUp, animate__rollIn, animate__backInRight, animate__zoomInUp, animate__backInLeft, animate__rotateInDownLeft, animate__backInDown, animate__zoomInDown, animate__fadeInUp, animate__zoomIn" data-nav="1" data-navcontainer=".control-spnb">
+
+        <?php
+            foreach ($indexProductsNoiBat as $k => $item) { ?>
+                <?php include TEMPLATE . "components/product_item.php"; ?>
             <?php } ?>
         </div>
     </div>
 </div>
+<div class="bg_spcap1 bg_bgsize w-clear" id="top-menu">
+    <div class="container w-clear">
+        <div class="owl-page owl-carousel owl-theme" data-items="screen:0|items:2|margin:50,screen:425|items:2|margin:50,screen:575|items:3|margin:50,screen:767|items:3|margin:100,screen:991|items:3|margin:100,screen:1199|items:5|margin:100" data-rewind="1" data-autoplay="1" data-loop="1" data-lazyload="0" data-mousedrag="1" data-touchdrag="0" data-smartspeed="800" data-autoplayspeed="800" data-autoplaytimeout="5000" data-dots="0" data-animations="animate__fadeInDown, animate__backInUp, animate__rollIn, animate__backInRight, animate__zoomInUp, animate__backInLeft, animate__rotateInDownLeft, animate__backInDown, animate__zoomInDown, animate__fadeInUp, animate__zoomIn" data-nav="1" data-navcontainer=".control-spnb">
+            <?php foreach ($indexProductListsNoiBat as $k => $item) { ?>
+            <div class="product-list">
+                <a class="box-product-list text-decoration-none"  title="<?=$item["name$lang"]?>"
+                   href="#menu<?=$item["id"]?>">
+                    <div class="pic-product-list">
+                        <div  href="<?=$item['id']?>" title="<?=$item["name$lang"]?>" class="scale-img">
+                            <img   onerror="this.src='thumbs/100x100x1/assets/images/noimage.png';"
+                                   src='thumbs/100x100x1/upload/product/<?=$item["photo"]?>'
+                                   alt='<?=$item["name$lang"]?>'/>
+                        </div>
 
+                    </div>
+                    <h3 class="m-0 text-split"><?=$item["name$lang"]?></h3>
 
-
-<div class="wrap-partner">
-    <div class="wrap-content d-flex align-items-center justify-content-between">
-        <div class="title-partner">
-            <span>Đối tác khách hàng</span>
-        </div>
-        <div class="owl-page owl-carousel owl-theme owl-partner" data-xsm-items="1:10" data-sm-items="6:10" data-md-items="5:10"
-             data-lg-items="5:10" data-xlg-items="6:10" data-rewind="1" data-autoplay="1" data-loop="0" data-lazyload="0"
-             data-mousedrag="1" data-touchdrag="1" data-smartspeed="500" data-autoplayspeed="3500" data-dots="0"
-             data-nav="0" data-navtext="" data-navcontainer="">
-                <?php foreach($partner as $item){ ?>
-                <a class="partner text-decoration-none" href="<?=$item["link"]?>" target="_blank" title="cj">
-                    <img onerror="this.src='thumbs/170x100x2/assets/images/noimage.png';" src="thumbs/170x100x1/storage/upload/photo/<?=$item["photo"]?>" alt="cj"/>
                 </a>
+
+            </div>
+            <?php } ?>
+        </div>
+    </div>
+
+</div>
+
+<?php
+$indexSPMoi = 0;
+?>
+
+<div class="bg_spnb bg_bgsize w-clear">
+    <div class="wrap-main container w-clear">
+        <div class="title-pro">
+            <span>Sản phẩm mới</span>
+        </div>
+        <div class="all-spmoi spmoi_dt">
+            <div class="grid_2 paddingg_30">
+                <div class="grid_2 paddingg_30">
+                    <?php
+                    for ($indexSPMoi; $indexSPMoi < 4; $indexSPMoi++){
+                        $item = $indexProductsNoiBat[$indexSPMoi];
+                    ?>
+                        <?php include TEMPLATE . "components/product_item.php"; ?>
+                    <?php } ?>
+                </div>
+                <?php if(isset($indexProductsNoiBat[$indexSPMoi])){ $item = $indexProductsNoiBat[$indexSPMoi]; include
+                    TEMPLATE . "components/product_item.php";} ?>
+            </div>
+            <div class="grid_4 paddingg_30 all_bottom_pronew">
+                <?php
+                $endIndexGrid4 = $indexSPMoi + 4;
+                for ($indexSPMoi; $indexSPMoi < $endIndexGrid4; $indexSPMoi++){
+                    $item = $indexProductsNoiBat[$indexSPMoi];
+                    ?>
+                    <?php include TEMPLATE . "components/product_item.php"; ?>
                 <?php } ?>
+            </div>
         </div>
 
+        <div class="all-spmoi spmoi_mb">
+            <div class="grid_4 paddingg_30 grid_3_md paddingg_15_xs grid_2_sm  paddingg_5_xs all_bottom_pronew">
+                <?php foreach ($indexProductsNoiBat as $k => $item) { ?>
+                    <?php include TEMPLATE . "components/product_item.php"; ?>
+                <?php } ?>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <a href="san-pham" title="Sản phẩm" class="more_pro_list">Xem tất cả sản phẩm</a>
+    </div>
+
+</div>
+
+<div class="bg_qc bg_bgsize w-clear">
+    <div class="qc-item" owl-item-animation>
+        <a class="qc-image scale-img" href="https://www.facebook.com/storemevabeThienPhuc" target="_blank">
+            <img class='lazy'  onerror="this.src='http://thienphucbabycare.com/thumbs/1366x470x1/assets/images/noimage.png';" data-src='http://thienphucbabycare.com/thumbs/1366x470x1/upload/photo/get-special-offers-from-us-by-buying-in-the-store-5316.png' alt=''/>      </a>
     </div>
 </div>
+<?php foreach ($indexProductListsNoiBat as $k => $item) {
+    $indexProductCatsNoiBat = $iCache->remember('indexProductCatsNoiBat_'.$item['id'], 3600, function()  use ($lang,
+        $d,
+        $item){
+        $productNB =  new \Illuminate\Support\Collection(
+            $d->rawQuery(
+                "select * from #_product_cat where type = ? and id_list=? and find_in_set('noibat',status) and find_in_set('hienthi',status)",
+                ['san-pham', $item['id']]
+            )
+        );
+
+        return $productNB;
+    });
+    ?>
+<div class="bg_spcap1_xt bg_bgsize w-clear py-5"  id="menu<?=$item['id']?>">
+    <div class="container">
+        <div class="title-product">
+            <div class="title_project">
+                <span><?=$item["name$lang"]?></span>
+                <div class="title-cat slick-cat center title-product-<?=$item['id']?>">
+                    <?php foreach ($indexProductCatsNoiBat as $kcatItem => $catItem) { ?>
+                        <a class="text-decoration-none a-title-product" data-list="<?=$item['id']?>"
+                           data-cat="<?=$catItem['id']?>"><?=$catItem["name$lang"]?></a>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <div class="paging-product-category paging-product-category-<?=$item['id']?> "
+             data-type="san-pham" data-list="<?=$item['id']?>"></div>
+<!--        <a href="--><?php //=$item["slug$lang"]?><!--" title="--><?php //=$item["name$lang"]?><!--" class="more_pro_list">Xem tất cả sản phẩm</a>-->
+    </div>
+</div>
+<?php } ?>
+
+
+<div class="bg_qc bg_bgsize w-clear">
+    <div class="qc-item" owl-item-animation>
+        <a class="qc-image scale-img" href="" target="_blank">
+            <img class='lazy'  onerror="this.src='http://thienphucbabycare.com/thumbs/1366x470x1/assets/images/noimage.png';" data-src='http://thienphucbabycare.com/thumbs/1366x470x1/upload/photo/chrome-white-and-bakers-brown-minimalist-new-born-little-one-facebook-cover-1-8333.png' alt=''/>      </a>
+    </div>
+</div>
+
+
+<div class="bg_info bg_bgsize w-clear">
+    <div class="wrap-main w-clear">
+
+        <div class="left_intro w-clear">
+
+            <div class="image_dknt">
+                <img class='lazy'  onerror="this.src='http://thienphucbabycare.com/thumbs/430x550x1/assets/images/noimage.png';" data-src='http://thienphucbabycare.com/thumbs/430x550x1/upload/photo/welcome-baby-poster-1554.png' alt=''/>      </div>
+            <div class="bg_dknt">
+
+                <div class="title_dknt"><span>Đăng ký nhận tin</span></div>
+                <form class="validation-newsletter" id="form-newsletter" novalidate method="post" action="" enctype="multipart/form-data">
+
+                    <div class="newsletter-input">
+                        <input type="fullname" class="form-control text-sm" id="fullname-newsletter" name="dataNewsletter[fullname]" placeholder="Họ và tên" required />
+                        <div class="invalid-feedback">Vui lòng nhập họ và tên</div>
+                    </div>
+
+
+                    <div class="newsletter-input">
+                        <input type="phone" class="form-control text-sm" id="phone-newsletter" name="dataNewsletter[phone]" placeholder="Số điện thoại" required />
+                        <div class="invalid-feedback">Vui lòng nhập số điện thoại</div>
+                    </div>
+                    <div class="newsletter-input">
+                        <input type="email" class="form-control text-sm" id="email-newsletter" name="dataNewsletter[email]" placeholder="Email" />
+                        <div class="invalid-feedback">Vui lòng nhập địa chỉ email</div>
+                    </div>
+                    <div class="newsletter-input">
+                        <textarea type="text" class="form-control" id="content-newsletter" name="dataNewsletter[content]" placeholder="Nội dung" /></textarea>
+                        <div class="invalid-feedback">Vui lòng nhập nội dung</div>
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="newsletter-button">
+                        <input type="submit" class="btn btn-sm "  value="Đăng ký ngay">
+                        <input type="hidden" name="submit-newsletter" value="1">
+
+                        <input type="hidden" class="btn btn-sm btn-danger " name="recaptcha_response_newsletter" id="recaptchaResponseNewsletter">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="right_intro w-clear">
+            <div class="title-intro">
+
+                <span>Tin tức nổi bật</span>
+            </div>
+            <div class="slick-news-for">
+                <div class="news-shadow-lrn">
+                    <div class="news-shadow-lrn-article position-relative flex topbottomflex ">
+                        <div class="news-shadow-lrn-image ">
+                            <a class="scale-img" href="d-d-d" title="𝐋𝐢́ 𝐝𝐨 𝐜𝐨𝐧 𝐜𝐡𝐚̣̂𝐦 𝐭𝐚̆𝐧𝐠 𝐜𝐚̂𝐧 ?𝐌𝐨𝐦 đ𝐚̃ 𝐜𝐡𝐨 𝐜𝐨𝐧 𝐚̆𝐧 đ𝐮́𝐧𝐠 𝐜𝐚́𝐜𝐡 𝐜𝐡𝐮̛𝐚?  𝐂𝐚́𝐜 𝐦𝐨𝐦 𝐜𝐮̀𝐧𝐠 đ𝐨̣𝐜 𝐯𝐚̀ 𝐥𝐮̛𝐮 𝐲́ 𝐧𝐡𝐞́ ">
+                                <img   onerror="this.src='http://thienphucbabycare.com/thumbs/240x165x1/assets/images/noimage.png';" src='http://thienphucbabycare.com/thumbs/240x165x1/upload/news/th-8775.jpg' alt='𝐋𝐢́ 𝐝𝐨 𝐜𝐨𝐧 𝐜𝐡𝐚̣̂𝐦 𝐭𝐚̆𝐧𝐠 𝐜𝐚̂𝐧 ?𝐌𝐨𝐦 đ𝐚̃ 𝐜𝐡𝐨 𝐜𝐨𝐧 𝐚̆𝐧 đ𝐮́𝐧𝐠 𝐜𝐚́𝐜𝐡 𝐜𝐡𝐮̛𝐚?  𝐂𝐚́𝐜 𝐦𝐨𝐦 𝐜𝐮̀𝐧𝐠 đ𝐨̣𝐜 𝐯𝐚̀ 𝐥𝐮̛𝐮 𝐲́ 𝐧𝐡𝐞́ '/>
+                            </a>
+                        </div>
+                        <div class="news-shadow-lrn-info ">
+                            <h3 class="news-shadow-lrn-name">
+                                <a class="text-decoration-none transition text-split" href="d-d-d"
+                                   title="𝐋𝐢́ 𝐝𝐨 𝐜𝐨𝐧 𝐜𝐡𝐚̣̂𝐦 𝐭𝐚̆𝐧𝐠 𝐜𝐚̂𝐧 ?𝐌𝐨𝐦 đ𝐚̃ 𝐜𝐡𝐨 𝐜𝐨𝐧 𝐚̆𝐧 đ𝐮́𝐧𝐠 𝐜𝐚́𝐜𝐡 𝐜𝐡𝐮̛𝐚?  𝐂𝐚́𝐜 𝐦𝐨𝐦 𝐜𝐮̀𝐧𝐠 đ𝐨̣𝐜 𝐯𝐚̀ 𝐥𝐮̛𝐮 𝐲́ 𝐧𝐡𝐞́ ">𝐋𝐢́ 𝐝𝐨 𝐜𝐨𝐧 𝐜𝐡𝐚̣̂𝐦 𝐭𝐚̆𝐧𝐠 𝐜𝐚̂𝐧 ?𝐌𝐨𝐦 đ𝐚̃ 𝐜𝐡𝐨 𝐜𝐨𝐧 𝐚̆𝐧 đ𝐮́𝐧𝐠 𝐜𝐚́𝐜𝐡 𝐜𝐡𝐮̛𝐚?  𝐂𝐚́𝐜 𝐦𝐨𝐦 𝐜𝐮̀𝐧𝐠 đ𝐨̣𝐜 𝐯𝐚̀ 𝐥𝐮̛𝐮 𝐲́ 𝐧𝐡𝐞́                 </a>
+                            </h3>
+                            <div class="news-shadow-lrn-desc text-split"></div>
+                            <a href="d-d-d" class="more_news"  title="𝐋𝐢́ 𝐝𝐨 𝐜𝐨𝐧 𝐜𝐡𝐚̣̂𝐦 𝐭𝐚̆𝐧𝐠 𝐜𝐚̂𝐧 ?𝐌𝐨𝐦 đ𝐚̃ 𝐜𝐡𝐨 𝐜𝐨𝐧 𝐚̆𝐧 đ𝐮́𝐧𝐠 𝐜𝐚́𝐜𝐡 𝐜𝐡𝐮̛𝐚?  𝐂𝐚́𝐜 𝐦𝐨𝐦 𝐜𝐮̀𝐧𝐠 đ𝐨̣𝐜 𝐯𝐚̀ 𝐥𝐮̛𝐮 𝐲́ 𝐧𝐡𝐞́ ">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-shadow-lrn">
+                    <div class="news-shadow-lrn-article position-relative d-flex align-items-center flex_odd_even">
+                        <div class="news-shadow-lrn-image ">
+                            <a class="scale-img" href="21-luu-y-khi-cham-be-duoi-1-tuoi" title="21 Lưu Ý Khi Chăm Bé Dưới 1 Tuổi">
+                                <img   onerror="this.src='http://thienphucbabycare.com/thumbs/240x165x1/assets/images/noimage.png';" src='http://thienphucbabycare.com/thumbs/240x165x1/upload/news/hinh-anh-baby-con-trai-ngo-nghinh-de-thuong-1649.jpg' alt='21 Lưu Ý Khi Chăm Bé Dưới 1 Tuổi'/>
+                            </a>
+                        </div>
+                        <div class="news-shadow-lrn-info ">
+                            <h3 class="news-shadow-lrn-name">
+                                <a class="text-decoration-none transition text-split" href="21-luu-y-khi-cham-be-duoi-1-tuoi"
+                                   title="21 Lưu Ý Khi Chăm Bé Dưới 1 Tuổi">21 Lưu Ý Khi Chăm Bé Dưới 1 Tuổi                </a>
+                            </h3>
+                            <div class="news-shadow-lrn-desc text-split">Những lưu ý dưới đây chắc chắn các mẹ sẽ cần trong giai đoạn con dưới 1 tuổi. Bởi đây là giai đoạn mẹ có nhiều lo lắng hơn bất cứ thời điểm nào.
+                                Cùng ThienPhucBabyCare tham khảo 21 lưu ý mẹ nhé!!</div>
+                            <a href="21-luu-y-khi-cham-be-duoi-1-tuoi" class="more_news"  title="21 Lưu Ý Khi Chăm Bé Dưới 1 Tuổi">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-shadow-lrn">
+                    <div class="news-shadow-lrn-article position-relative flex topbottomflex ">
+                        <div class="news-shadow-lrn-image ">
+                            <a class="scale-img" href="cac-benh-ngoai-da-thuong-gap-o-tre-nho-va-cach-cham-soc-da-be-mua-nang-nong" title="CÁC BỆNH NGOÀI DA THƯỜNG GẶP Ở TRẺ NHỎ VÀ CÁCH CHĂM SÓC DA BÉ MÙA NẮNG NÓNG">
+                                <img   onerror="this.src='http://thienphucbabycare.com/thumbs/240x165x1/assets/images/noimage.png';" src='http://thienphucbabycare.com/thumbs/240x165x1/upload/news/cach-cham-soc-da-cho-be-vao-mua-he-1-2964.jpg' alt='CÁC BỆNH NGOÀI DA THƯỜNG GẶP Ở TRẺ NHỎ VÀ CÁCH CHĂM SÓC DA BÉ MÙA NẮNG NÓNG'/>
+                            </a>
+                        </div>
+                        <div class="news-shadow-lrn-info ">
+                            <h3 class="news-shadow-lrn-name">
+                                <a class="text-decoration-none transition text-split" href="cac-benh-ngoai-da-thuong-gap-o-tre-nho-va-cach-cham-soc-da-be-mua-nang-nong"
+                                   title="CÁC BỆNH NGOÀI DA THƯỜNG GẶP Ở TRẺ NHỎ VÀ CÁCH CHĂM SÓC DA BÉ MÙA NẮNG NÓNG">CÁC BỆNH NGOÀI DA THƯỜNG GẶP Ở TRẺ NHỎ VÀ CÁCH CHĂM SÓC DA BÉ MÙA NẮNG NÓNG                </a>
+                            </h3>
+                            <div class="news-shadow-lrn-desc text-split">Da của trẻ rất mong manh, chính vì vậy khi thời tiết nắng nóng trẻ dễ mắc các bệnh như: rôm sảy, hăm kẽ, mụn nước, bóng nước, chàm… nặng hơn, da trẻ dễ bị tấn công bởi các vi khuẩn gây bệnh (cầu khuẩn) gây chốc, nhọt, u mềm lây, thủy đậu…</div>
+                            <a href="cac-benh-ngoai-da-thuong-gap-o-tre-nho-va-cach-cham-soc-da-be-mua-nang-nong" class="more_news"  title="CÁC BỆNH NGOÀI DA THƯỜNG GẶP Ở TRẺ NHỎ VÀ CÁCH CHĂM SÓC DA BÉ MÙA NẮNG NÓNG">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-shadow-lrn">
+                    <div class="news-shadow-lrn-article position-relative d-flex align-items-center flex_odd_even">
+                        <div class="news-shadow-lrn-image ">
+                            <a class="scale-img" href="cac-cau-hoi-thuong-gap-ve-viec-nuoi-con-sua-me" title="Các câu hỏi thường gặp về việc nuôi con sữa &quot;Mẹ&quot;?">
+                                <img   onerror="this.src='http://thienphucbabycare.com/thumbs/240x165x1/assets/images/noimage.png';" src='http://thienphucbabycare.com/thumbs/240x165x1/upload/news/shop-me-va-be-quang-ngai-6-4194.jpg' alt='Các câu hỏi thường gặp về việc nuôi con sữa &quot;Mẹ&quot;?'/>
+                            </a>
+                        </div>
+                        <div class="news-shadow-lrn-info ">
+                            <h3 class="news-shadow-lrn-name">
+                                <a class="text-decoration-none transition text-split" href="cac-cau-hoi-thuong-gap-ve-viec-nuoi-con-sua-me"
+                                   title="Các câu hỏi thường gặp về việc nuôi con sữa &quot;Mẹ&quot;?">Các câu hỏi thường gặp về việc nuôi con sữa &quot;Mẹ&quot;?                </a>
+                            </h3>
+                            <div class="news-shadow-lrn-desc text-split">Cùng Thiên Phúc giải đáp các thắc mắc cho mẹ khi nuôi con bằng sữa &quot;Mẹ&quot; nhé!!!</div>
+                            <a href="cac-cau-hoi-thuong-gap-ve-viec-nuoi-con-sua-me" class="more_news"  title="Các câu hỏi thường gặp về việc nuôi con sữa &quot;Mẹ&quot;?">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-shadow-lrn">
+                    <div class="news-shadow-lrn-article position-relative d-flex align-items-center justi ">
+                        <div class="news-shadow-lrn-image ">
+                            <a class="scale-img" href="6-cach-tri-ho-cho-be-tai-nha-an-toan-co-nen-dung-khang-sinh" title="6 cách trị ho cho bé tại nhà an toàn - Có nên dùng kháng sinh?">
+                                <img   onerror="this.src='http://thienphucbabycare.com/thumbs/240x165x1/assets/images/noimage.png';" src='http://thienphucbabycare.com/thumbs/240x165x1/upload/news/thuoc-ho-dom-cho-be-8321.jpg' alt='6 cách trị ho cho bé tại nhà an toàn - Có nên dùng kháng sinh?'/>
+                            </a>
+                        </div>
+                        <div class="news-shadow-lrn-info ">
+                            <h3 class="news-shadow-lrn-name">
+                                <a class="text-decoration-none transition text-split" href="6-cach-tri-ho-cho-be-tai-nha-an-toan-co-nen-dung-khang-sinh"
+                                   title="6 cách trị ho cho bé tại nhà an toàn - Có nên dùng kháng sinh?">6 cách trị ho cho bé tại nhà an toàn - Có nên dùng kháng sinh?                </a>
+                            </h3>
+                            <div class="news-shadow-lrn-desc text-split">Trong giai đoạn từ 5 tháng tuổi trở đi, trẻ nhỏ bắt đầu tiếp xúc nhiều hơn với môi trường bên ngoài, cộng với hệ miễn dịch chưa phát triển hoàn thiện nên rất dễ bị nhiễm khuẩn đường hô hấp dẫn đến ho. Nhiều mẹ nôn nóng chữa ho cho bé bằng cách dùng thuốc nhưng điều này có thật sự an toàn? Cùng Huggies giải đáp thắc mắc vừa nêu và tìm hiểu 6 cách trị ho cho bé an toàn tại nhà không dùng thuốc nhé!</div>
+                            <a href="6-cach-tri-ho-cho-be-tai-nha-an-toan-co-nen-dung-khang-sinh" class="more_news"  title="6 cách trị ho cho bé tại nhà an toàn - Có nên dùng kháng sinh?">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-shadow-lrn">
+                    <div class="news-shadow-lrn-article position-relative d-flex align-items-center flex_odd_even">
+                        <div class="news-shadow-lrn-image ">
+                            <a class="scale-img" href="thuc-don-cho-be-1-tuoi-bieng-an-du-chat-giup-be-tang-can" title="Thực Đơn Cho Bé 1 Tuổi Biếng Ăn, Đủ Chất, Giúp Bé Tăng Cân">
+                                <img   onerror="this.src='http://thienphucbabycare.com/thumbs/240x165x1/assets/images/noimage.png';" src='http://thienphucbabycare.com/thumbs/240x165x1/upload/news/z423635886112981f4e577280ecd052a6a4efee1db48a5-1683.jpg' alt='Thực Đơn Cho Bé 1 Tuổi Biếng Ăn, Đủ Chất, Giúp Bé Tăng Cân'/>
+                            </a>
+                        </div>
+                        <div class="news-shadow-lrn-info ">
+                            <h3 class="news-shadow-lrn-name">
+                                <a class="text-decoration-none transition text-split" href="thuc-don-cho-be-1-tuoi-bieng-an-du-chat-giup-be-tang-can"
+                                   title="Thực Đơn Cho Bé 1 Tuổi Biếng Ăn, Đủ Chất, Giúp Bé Tăng Cân">Thực Đơn Cho Bé 1 Tuổi Biếng Ăn, Đủ Chất, Giúp Bé Tăng Cân                </a>
+                            </h3>
+                            <div class="news-shadow-lrn-desc text-split">Khi bé bước vào độ tuổi ăn dặm, là khoảng thời gian khiến nhiều bà mẹ phải đau đầu vì không biết làm thế nào để bé ăn ngon. Bên cạnh đó, phải cho bé ăn dặm như thế nào, bao nhiêu bữa là đủ cũng là thắc mắc của nhiều mẹ bỉm. Cùng Huggies tham khảo một số thực đơn cho bé 1 tuổi ăn dặm cũng như những điều bạn cần biết khi cho bé ăn gì là gì nhé.</div>
+                            <a href="thuc-don-cho-be-1-tuoi-bieng-an-du-chat-giup-be-tang-can" class="more_news"  title="Thực Đơn Cho Bé 1 Tuổi Biếng Ăn, Đủ Chất, Giúp Bé Tăng Cân">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -106,9 +106,7 @@ NN_FRAMEWORK.Wows = function () {
 
 /* Pagings */
 NN_FRAMEWORK.Pagings = function () {
-	if (isExist($('.paging-product_thietkenoithat'))) {
-		loadPaging('api/product.php?perpage=8&type=thiet-ke-noi-that', '.paging-product_thietkenoithat');
-	}
+
 	/* Products */
 	if (isExist($('.paging-product'))) {
 		loadPaging('api/product.php?perpage=8', '.paging-product');
@@ -116,21 +114,19 @@ NN_FRAMEWORK.Pagings = function () {
 
 	/* Categories */
 	if (isExist($('.paging-product-category'))) {
-		console.log('paging-product-category');
 		$('.paging-product-category').each(function () {
 			var list = $(this).data('list');
 			var type = $(this).data('type');
-			console.log(list, type);
 			loadPaging('api/product.php?perpage=8&idList=' + list + '&type=' + type, '.paging-product-category-' + list);
 		});
 	}
-
-	if (isExist($('.paging-dichvu_chinh'))) {
-		loadPaging('api/news.php?perpage=8&type=dich-vu&status=chinh', '.paging-dichvu_chinh');
-	}
-	if (isExist($('.paging-dichvu_noibat'))) {
-		loadPaging('api/news.php?perpage=8&type=dich-vu&status=noibat', '.paging-dichvu_noibat');
-	}
+	$(document).on("click", ".a-title-product", function () {
+		$(".a-title-product.active").removeClass("active");
+		$(this).addClass("active");
+		var _list = $(this).data("list");
+		var _cat = $(this).data("cat");
+		loadPaging("api/product.php?idList=" + _list + "&idCat=" + _cat + "&perpage=8", ".paging-product-category-" + _list, true );
+	});
 };
 
 /* Ticker scroll */

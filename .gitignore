@@ -23,7 +23,6 @@ yarn-error.log
 /storage/logs/*
 /storage/upload/product/*
 /storage/upload/news/*
-/storage/upload/photo/*
 /storage/upload/video/*
 /thumbs
 /watermark

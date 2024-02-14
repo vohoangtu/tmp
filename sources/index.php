@@ -2,6 +2,29 @@
 
 if (!defined('SOURCES')) die("Error");
 
+$indexProductsNoiBat = $iCache->remember('indexProductsNoiBat', 3600, function()  use ($lang, $d){
+    $productNB =  new \Illuminate\Support\Collection(
+        $d->rawQuery(
+            "select * from #_product where type = ? and find_in_set('noibat',status) and find_in_set('hienthi',status)",
+            ['san-pham']
+        )
+    );
+
+    return $productNB;
+});
+
+$indexProductListsNoiBat = $iCache->remember('indexProductListsNoiBat', 3600, function()  use ($lang, $d){
+    $productNB =  new \Illuminate\Support\Collection(
+        $d->rawQuery(
+            "select * from #_product_list where type = ? and find_in_set('noibat',status) and find_in_set('hienthi',status)",
+            ['san-pham']
+        )
+    );
+
+    return $productNB;
+});
+
+
 $popup = $cache->get("select name$lang, photo, link from #_photo where type = ? and act = ? and find_in_set('hienthi',status) limit 0,1", array('popup', 'photo_static'), 'fetch', 7200);
 
 $slider = $cache->get("select name$lang, photo, link from #_photo where type = ? and find_in_set('hienthi',status) order by numb desc", array('slide'), 'result', 7200);
