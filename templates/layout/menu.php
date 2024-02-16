@@ -3,14 +3,15 @@
     <div class="wrap-content">
 
 
-
         <ul class="menu-main">
 
-            <li><a class="<?php if ($com == 'index') echo 'active'; ?> transition" href="" title="<?= trangchu ?>"><?= trangchu ?></a></li>
+            <li><a class="<?php if ($com == 'index') echo 'active'; ?> transition" href=""
+                   title="<?= trangchu ?>"><?= trangchu ?></a></li>
 
             <li class="menu-line"></li>
 
-            <li><a class="<?php if ($com == 'gioi-thieu') echo 'active'; ?> transition" href="gioi-thieu" title="<?= gioithieu ?>"><?= gioithieu ?></a></li>
+            <li><a class="<?php if ($com == 'gioi-thieu') echo 'active'; ?> transition" href="gioi-thieu"
+                   title="<?= gioithieu ?>"><?= gioithieu ?></a></li>
 
             <li class="menu-line"></li>
 
@@ -27,7 +28,8 @@
 
                             <li>
 
-                                <a class="has-child transition" title="<?= $vlist['name' . $lang] ?>" href="<?= $vlist[$sluglang] ?>"><?= $vlist['name' . $lang] ?></a>
+                                <a class="has-child transition" title="<?= $vlist['name' . $lang] ?>"
+                                   href="<?= $vlist[$sluglang] ?>"><?= $vlist['name' . $lang] ?></a>
 
                                 <?php if (!empty($spcat)) { ?>
 
@@ -39,7 +41,8 @@
 
                                             <li>
 
-                                                <a class="has-child transition" title="<?= $vcat['name' . $lang] ?>" href="<?= $vcat[$sluglang] ?>"><?= $vcat['name' . $lang] ?></a>
+                                                <a class="has-child transition" title="<?= $vcat['name' . $lang] ?>"
+                                                   href="<?= $vcat[$sluglang] ?>"><?= $vcat['name' . $lang] ?></a>
 
                                                 <?php if (!empty($spitem)) { ?>
 
@@ -51,7 +54,9 @@
 
                                                             <li>
 
-                                                                <a class="has-child transition" title="<?= $vitem['name' . $lang] ?>" href="<?= $vitem[$sluglang] ?>"><?= $vitem['name' . $lang] ?></a>
+                                                                <a class="has-child transition"
+                                                                   title="<?= $vitem['name' . $lang] ?>"
+                                                                   href="<?= $vitem[$sluglang] ?>"><?= $vitem['name' . $lang] ?></a>
 
                                                                 <?php if (!empty($spsub)) { ?>
 
@@ -61,7 +66,9 @@
 
                                                                             <li>
 
-                                                                                <a class="transition" title="<?= $vsub['name' . $lang] ?>" href="<?= $vsub[$sluglang] ?>"><?= $vsub['name' . $lang] ?></a>
+                                                                                <a class="transition"
+                                                                                   title="<?= $vsub['name' . $lang] ?>"
+                                                                                   href="<?= $vsub[$sluglang] ?>"><?= $vsub['name' . $lang] ?></a>
 
                                                                             </li>
 
@@ -99,15 +106,18 @@
 
             <li class="menu-line"></li>
 
-            <li><a class="<?php if ($com == 'dich-vu') echo 'active'; ?> transition" href="dich-vu" title="<?= dichvu ?>"><?= dichvu ?></a></li>
+            <li><a class="<?php if ($com == 'dich-vu') echo 'active'; ?> transition" href="dich-vu"
+                   title="<?= dichvu ?>"><?= dichvu ?></a></li>
 
             <li class="menu-line"></li>
 
-            <li><a class="<?php if ($com == 'thanh-toan') echo 'active'; ?> transition" href="thanh-toan" title="<?= thanhtoan ?>"><?= thanhtoan ?></a></li>
+            <li><a class="<?php if ($com == 'thanh-toan') echo 'active'; ?> transition" href="thanh-toan"
+                   title="<?= thanhtoan ?>"><?= thanhtoan ?></a></li>
 
             <li class="menu-line"></li>
 
-            <li><a class="<?php if ($com == 'lien-he') echo 'active'; ?> transition" href="lien-he" title="<?= lienhe ?>"><?= lienhe ?></a></li>
+            <li><a class="<?php if ($com == 'lien-he') echo 'active'; ?> transition" href="lien-he"
+                   title="<?= lienhe ?>"><?= lienhe ?></a></li>
 
         </ul>
 

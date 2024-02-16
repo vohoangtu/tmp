@@ -1,7 +1,1 @@
-<?php
-
-namespace ScssPhp\ScssPhp\Exception;
-
-interface SassException
-{
-}
+<?phpnamespace ScssPhp\ScssPhp\Exception;interface SassException{}

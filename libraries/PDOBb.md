@@ -6,25 +6,25 @@ PHP PDO Wrapper which utilizes PDO and prepared statements
 
 ### Table of Contents
 
--   **[Initialization](#initialization)**
--   **[Insert Query](#insert-query)**
--   **[Update Query](#update-query)**
--   **[Select Query](#select-query)**
--   **[Delete Query](#delete-query)**
--   **[Pagination](#pagination)**
--   **[Running raw SQL queries](#running-raw-sql-queries)**
--   **[Query Keywords](#query-keywords)**
--   **[Where Conditions](#where--having-methods)**
--   **[Order Conditions](#ordering-method)**
--   **[Group Conditions](#grouping-method)**
--   **[Properties Sharing](#properties-sharing)**
--   **[Joining Tables](#join-method)**
--   **[Subqueries](#subqueries)**
--   **[EXISTS / NOT EXISTS condition](#exists--not-exists-condition)**
--   **[Has method](#has-method)**
--   **[Helper Methods](#helper-methods)**
--   **[Transaction Helpers](#transaction-helpers)**
--   **[Error Helpers](#error-helpers)**
+- **[Initialization](#initialization)**
+- **[Insert Query](#insert-query)**
+- **[Update Query](#update-query)**
+- **[Select Query](#select-query)**
+- **[Delete Query](#delete-query)**
+- **[Pagination](#pagination)**
+- **[Running raw SQL queries](#running-raw-sql-queries)**
+- **[Query Keywords](#query-keywords)**
+- **[Where Conditions](#where--having-methods)**
+- **[Order Conditions](#ordering-method)**
+- **[Group Conditions](#grouping-method)**
+- **[Properties Sharing](#properties-sharing)**
+- **[Joining Tables](#join-method)**
+- **[Subqueries](#subqueries)**
+- **[EXISTS / NOT EXISTS condition](#exists--not-exists-condition)**
+- **[Has method](#has-method)**
+- **[Helper Methods](#helper-methods)**
+- **[Transaction Helpers](#transaction-helpers)**
+- **[Error Helpers](#error-helpers)**
 
 ### Installation
 
@@ -333,9 +333,11 @@ print_r ($result); // contains array of returned rows
 
 ### Where / Having Methods
 
-`where()`, `orWhere()`, `having()` and `orHaving()` methods allows you to specify where and having conditions of the query. All conditions supported by where() are supported by having() as well.
+`where()`, `orWhere()`, `having()` and `orHaving()` methods allows you to specify where and having conditions of the
+query. All conditions supported by where() are supported by having() as well.
 
-WARNING: In order to use column to column comparisons only raw where conditions should be used as column name or functions cant be passed as a bind variable.
+WARNING: In order to use column to column comparisons only raw where conditions should be used as column name or
+functions cant be passed as a bind variable.
 
 Regular == operator with variables:
 
@@ -440,7 +442,8 @@ echo "Showing {$count} from {$db->totalCount}";
 
 ### Query Keywords
 
-To add LOW PRIORITY | DELAYED | HIGH PRIORITY | IGNORE and the rest of the mysql keywords to INSERT (), REPLACE (), GET (), UPDATE (), DELETE() method or FOR UPDATE | LOCK IN SHARE MODE into SELECT ():
+To add LOW PRIORITY | DELAYED | HIGH PRIORITY | IGNORE and the rest of the mysql keywords to INSERT (), REPLACE (),
+GET (), UPDATE (), DELETE() method or FOR UPDATE | LOCK IN SHARE MODE into SELECT ():
 
 ```php
 $db->setQueryOption('LOW_PRIORITY')->insert($table, $param);
@@ -501,7 +504,8 @@ $db->get('users');
 // Gives: SELECT * FROM users ORDER BY FIELD (userGroup, 'superuser', 'admin', 'users') ASC;
 ```
 
-If you are using setPrefix () functionality and need to use table names in orderBy() method make sure that table names are escaped with ``.
+If you are using setPrefix () functionality and need to use table names in orderBy() method make sure that table names
+are escaped with ``.
 
 ```php
 $db->setPrefix("t_");
@@ -622,7 +626,8 @@ $products = $db->get ("products");
 
 ### Has method
 
-A convenient function that returns TRUE if exists at least an element that satisfy the where condition specified calling the "where" method before this one.
+A convenient function that returns TRUE if exists at least an element that satisfy the where condition specified calling
+the "where" method before this one.
 
 ```php
 $db->where("user", $user);
@@ -636,7 +641,8 @@ if($db->has("users")) {
 
 ### Helper methods
 
-Get last executed SQL query: Please note that function returns SQL query only for debugging purposes as its execution most likely will fail due missing quotes around char variables.
+Get last executed SQL query: Please note that function returns SQL query only for debugging purposes as its execution
+most likely will fail due missing quotes around char variables.
 
 ```php
 $db->get('users');
@@ -675,7 +681,8 @@ if (!$db->insert('myTable', $insertData)) {
 
 ### Error helpers
 
-After you executed a query you have options to check if there was an error. You can get the MySQL error string or the error code for the last executed query.
+After you executed a query you have options to check if there was an error. You can get the MySQL error string or the
+error code for the last executed query.
 
 ```php
 $db->where('login', 'admin')->update('users', ['firstName' => 'Jack']);

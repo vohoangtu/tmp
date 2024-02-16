@@ -41,13 +41,11 @@ $tempLink .= "&p=";
 $pageLink .= $tempLink;
 
 
-
 /* Get data */
 
 $sql = "select * from #_news where type='"
 
-    .$_type."' $where and find_in_set('noibat',status) and find_in_set('hienthi',status) order by numb,id desc";
-
+    . $_type . "' $where and find_in_set('noibat',status) and find_in_set('hienthi',status) order by numb,id desc";
 
 
 $sqlCache = $sql . " limit $start, $pagingAjax->perpage";
@@ -55,11 +53,9 @@ $sqlCache = $sql . " limit $start, $pagingAjax->perpage";
 $items = $cache->get($sqlCache, $params, 'result', 7200);
 
 
-
 /* Count all data */
 
 $countItems = count($cache->get($sql, $params, 'result', 7200));
-
 
 
 /* Get page result */
@@ -73,7 +69,7 @@ $pagingItems = $pagingAjax->getAllPageLinks($countItems, $pageLink, $eShow);
 
         <?php foreach ($items as $k => $item) {
             echo '<div class="col-md-3 col-6">';
-                include ROOT . "templates/components/dichvu_item.php";
+            include ROOT . "templates/components/dichvu_item.php";
             echo '</div>';
         } ?>
 

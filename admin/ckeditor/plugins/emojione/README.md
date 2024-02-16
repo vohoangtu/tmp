@@ -1,6 +1,7 @@
 # Emojione for CKEditor
 
-This plugin integrates the emojione library into the CKEditor. The plugin allows you to add all known emojis into your content in unicode format.
+This plugin integrates the emojione library into the CKEditor. The plugin allows you to add all known emojis into your
+content in unicode format.
 
 Plugin on the [CKEditor website](http://ckeditor.com/addon/emojione)
 
@@ -40,5 +41,6 @@ After that you can register the plugin within your CKeditor configuration:
 </html>
 ```
 
-This addon has been inspired by the [smiley plugin](https://github.com/ckeditor/ckeditor-dev/tree/master/plugins/smiley) and added support for native emojis.
+This addon has been inspired by the [smiley plugin](https://github.com/ckeditor/ckeditor-dev/tree/master/plugins/smiley)
+and added support for native emojis.
 

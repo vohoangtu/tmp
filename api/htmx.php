@@ -2,8 +2,8 @@
 
 include "config.php";
 
-if(isset($_SERVER['X-Requested-With']) && $_SERVER['X-Requested-With'] == 'XMLHttpRequest'){
+if (isset($_SERVER['X-Requested-With']) && $_SERVER['X-Requested-With'] == 'XMLHttpRequest') {
 
-}else{
+} else {
     throw new Exception("HTMX not support this protocol");
 }

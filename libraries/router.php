@@ -36,13 +36,13 @@ $router->map('GET', THUMBS . '/[i:w]x[i:h]x[i:z]/[**:src]', function ($w, $h, $z
 $router->map('GET', WATERMARK . '/product/[i:w]x[i:h]x[i:z]/[**:src]', function ($w, $h, $z, $src) {
     global $func, $cache;
     $wtm = $cache->get("select status, photo, options from #_photo where type = ? and act = ? limit 0,1", array('watermark', 'photo_static'), 'fetch', 7200);
-    $func->createThumb($w, $h, $z, $src, $wtm, "product");
+    $func->createThumb($w, $h, $z, $src, $wtm, WATERMARK ."/product");
 }, 'watermark');
 
 $router->map('GET', WATERMARK . '/news/[i:w]x[i:h]x[i:z]/[**:src]', function ($w, $h, $z, $src) {
     global $func, $cache;
     $wtm = $cache->get("select status, photo, options from #_photo where type = ? and act = ? limit 0,1", array('watermark-news', 'photo_static'), 'fetch', 7200);
-    $func->createThumb($w, $h, $z, $src, $wtm, "news");
+    $func->createThumb($w, $h, $z, $src, $wtm, WATERMARK ."/news");
 }, 'watermarkNews');
 
 $router->map('GET|POST', '', 'index', 'home');
@@ -53,11 +53,10 @@ $router->map('GET|POST', '[a:com]/[a:lang]/', 'allpagelang', 'lang');
 $router->map('GET|POST', '[a:com]/[a:action]', 'account', 'account');
 
 
-
 /* Router match */
 try {
     $match = $router->match();
-    if(!is_array($match)) throw new Exception("Router Not Found");
+    if (!is_array($match)) throw new Exception("Router Not Found");
 
     if (is_callable($match['target'])) {
         call_user_func_array($match['target'], $match['params']);
@@ -74,8 +73,7 @@ try {
 
     /* Lang */
 
-    if (!empty($match['params']['lang'])) $_SESSION['lang'] = $match['params']['lang'];
-    else if (empty($_SESSION['lang']) && empty($match['params']['lang'])) $_SESSION['lang'] = $optsetting['lang_default'];
+    if (!empty($match['params']['lang'])) $_SESSION['lang'] = $match['params']['lang']; else if (empty($_SESSION['lang']) && empty($match['params']['lang'])) $_SESSION['lang'] = $optsetting['lang_default'];
     $lang = $_SESSION['lang'];
 
     /* Check lang */
@@ -88,37 +86,29 @@ try {
         $lang = $app['locale'];
     }
 
-    $sluglang = 'slug'.$lang;
-    $nameLang = 'name'.$lang;
-    $contentLang = 'content'.$lang;
-    $descLang = 'desc'.$lang;
+    $sluglang = 'slug' . $lang;
+    $nameLang = 'name' . $lang;
+    $contentLang = 'content' . $lang;
+    $descLang = 'desc' . $lang;
     $seolang = "vi";
 
     require_once LIBRARIES . "lang/$lang.php";
 
     /* Find data */
-    if (!empty($com) && !in_array($com, ['index','','tim-kiem', 'account', 'sitemap'])) {
-        $__table = [
-            'product', 'news'
-        ];
+    if (!empty($com) && !in_array($com, ['index', '', 'tim-kiem', 'account', 'sitemap'])) {
+        $__table = ['product', 'news'];
 
-        foreach ($__table as $table){
+        foreach ($__table as $table) {
             $distinctType[$table] = array_keys($config[$table] ?? []);
         }
 
-        function setRequick($field, $key, $nameType, $tbl, $config){
-            return [
-                "tbl" => $tbl,
-                "field" => $field,
-                "source" => $config[$key][$nameType]['source'] ?? $key,
-                "com" => $config[$key][$nameType]['com'] ?? $nameType,
-                "type" => $nameType,
-                "menu" => $config[$key][$nameType]['menu'] ?? false
-            ];
+        function setRequick($field, $key, $nameType, $tbl, $config)
+        {
+            return ["tbl" => $tbl, "field" => $field, "source" => $config[$key][$nameType]['source'] ?? $key, "com" => $config[$key][$nameType]['com'] ?? $nameType, "type" => $nameType, "menu" => $config[$key][$nameType]['menu'] ?? false];
         }
 
-        foreach ($distinctType as $key => $types){
-            foreach ($types as  $nameType) {
+        foreach ($distinctType as $key => $types) {
+            foreach ($types as $nameType) {
                 if (!isset($config[$key][$nameType])) continue;
                 $requick[] = setRequick("id", $key, $nameType, $key, $config);
 
@@ -146,14 +136,7 @@ try {
         }
         /* Tối ưu link */
 
-    $requick = array_merge($requick, array(
-        array("tbl" => "tags", "tbltag" => "product", "field" => "id", "source" => "tags", "com" => "tags-san-pham", "type" => "san-pham", "menu" => true),
-        array("tbl" => "tags", "tbltag" => "news", "field" => "id", "source" => "tags", "com" => "tags-tin-tuc", "type" => "tin-tuc", "menu" => true),
-        array("tbl" => "product", "field" => "id", "source" => "product", "com" => "thu-vien-anh", "type" => "thu-vien-anh", "menu" => true),
-        array("tbl" => "photo", "field" => "id", "source" => "video", "com" => "video", "type" => "video", "menu" => true),
-        array("tbl" => "static", "field" => "id", "source" => "static", "com" => "gioi-thieu", "type" => "gioi-thieu", "menu" => true),
-        array("tbl" => "", "field" => "id", "source" => "", "com" => "lien-he", "type" => "", "menu" => true),
-    ));
+        $requick = array_merge($requick, array(array("tbl" => "tags", "tbltag" => "product", "field" => "id", "source" => "tags", "com" => "tags-san-pham", "type" => "san-pham", "menu" => true), array("tbl" => "tags", "tbltag" => "news", "field" => "id", "source" => "tags", "com" => "tags-tin-tuc", "type" => "tin-tuc", "menu" => true), array("tbl" => "product", "field" => "id", "source" => "product", "com" => "thu-vien-anh", "type" => "thu-vien-anh", "menu" => true), array("tbl" => "photo", "field" => "id", "source" => "video", "com" => "video", "type" => "video", "menu" => true), array("tbl" => "static", "field" => "id", "source" => "static", "com" => "gioi-thieu", "type" => "gioi-thieu", "menu" => true), array("tbl" => "", "field" => "id", "source" => "", "com" => "lien-he", "type" => "", "menu" => true),));
         foreach ($requick as $k => $v) {
             $urlTbl = (!empty($v['tbl'])) ? $v['tbl'] : '';
             $urlTblTag = (!empty($v['tbltag'])) ? $v['tbltag'] : '';
@@ -172,7 +155,7 @@ try {
         }
         $collect = new \Illuminate\Support\Collection($requick);
 
-        $object = $collect->filter(function ($value) use ($com){
+        $object = $collect->filter(function ($value) use ($com) {
             return $value['com'] == $com && $value['field'] == 'id';
         })->first();
 
@@ -185,7 +168,7 @@ try {
     }
 
 
-    switch ($com){
+    switch ($com) {
 
         case '':
         case 'index':
@@ -223,13 +206,13 @@ try {
 
     }
 
-    if(!$source) throw new Exception("source not found");
+    if (!$source) throw new Exception("source not found");
     if (empty($template)) throw new Exception("template not found");
 
     require_once SOURCES . "allpage.php";
     include SOURCES . $source . ".php";
 
-}catch (Exception $exception){
+} catch (Exception $exception) {
     header('HTTP/1.0 404 Not Found', true, 404);
     include("404.php");
     exit;
